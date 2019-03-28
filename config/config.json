@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "landing-image-carousel-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/landingImageCarousel/LandingImageCarouselWebPart.js",
+          "manifest": "./src/webparts/landingImageCarousel/LandingImageCarouselWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "LandingImageCarouselWebPartStrings": "lib/webparts/landingImageCarousel/loc/{locale}.js"
+  }
+}
