@@ -7,15 +7,12 @@ export default class LandingImageCarousel extends React.Component<ILandingImageC
 
   private reactSwipeEl: any;
   private swipeOptions = {
-    startSlide: 1,
+    startSlide: 0,
     speed: 400,
-    widthOfSiblingSlidePreview: 0,
     auto: 3000,
     continuous: true,
-    disableScroll: false,
-    stopPropagation: false,
-    callback: (index, elem) =>{},
-    transitionEnd: (index, elem) => {}
+    disableScroll: true,
+    stopPropagation: false
   };
 
   public render(): React.ReactElement<ILandingImageCarouselProps> {
@@ -27,10 +24,11 @@ export default class LandingImageCarousel extends React.Component<ILandingImageC
           swipeOptions={this.swipeOptions}
           ref={el => (this.reactSwipeEl = el)}
         >
-          {this.props.collectionData.map((slide, idx) => <Slide item={slide} key={idx}/>)}
+          {this.props.collectionData?
+              this.props.collectionData.map((slide, idx) => <Slide item={slide} key={idx}/>) : null}
         </ReactSwipe>
-        <button onClick={() => this.reactSwipeEl.next()}>Next</button>
-        <button onClick={() => this.reactSwipeEl.prev()}>Previous</button>
+        <a className={styles.next} onClick={() => this.reactSwipeEl.next()}>Next</a>
+        <a className={styles.prev} onClick={() => this.reactSwipeEl.prev()}>Previous</a>
       </div>
     );
   }
