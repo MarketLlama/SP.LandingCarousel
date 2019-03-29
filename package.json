@@ -21,6 +21,7 @@
     "@types/react": "16.4.2",
     "@types/react-dom": "16.0.5",
     "@types/webpack-env": "1.13.1",
+    "office-ui-fabric-react": "^5.112.0",
     "react": "^16.7.0",
     "react-dom": "16.7.0",
     "react-swipe": "^6.0.4",

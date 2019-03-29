@@ -3,6 +3,8 @@ import ReactSwipe from 'react-swipe';
 import styles from './LandingImageCarousel.module.scss';
 import { ILandingImageCarouselProps } from './ILandingImageCarouselProps';
 import { Slide } from './slides';
+import { Icon } from 'office-ui-fabric-react/lib/Icon';
+
 export default class LandingImageCarousel extends React.Component<ILandingImageCarouselProps, {}> {
 
   private reactSwipeEl: any;
@@ -15,20 +17,27 @@ export default class LandingImageCarousel extends React.Component<ILandingImageC
     stopPropagation: false
   };
 
-  public render(): React.ReactElement<ILandingImageCarouselProps> {
 
+  public render(): React.ReactElement<ILandingImageCarouselProps> {
+    const webpartStyle: React.CSSProperties = {};
+    webpartStyle.backgroundColor = this.props.defaultColor;
     return (
-      <div className={ styles.landingImageCarousel }>
+      <div className={ styles.landingImageCarousel } style={webpartStyle}>
         <ReactSwipe
           className={styles.carousel}
           swipeOptions={this.swipeOptions}
           ref={el => (this.reactSwipeEl = el)}
         >
           {this.props.collectionData?
-              this.props.collectionData.map((slide, idx) => <Slide item={slide} key={idx}/>) : null}
+              this.props.collectionData.map((slide, idx) => <Slide item={slide} key={idx}
+                defaultColor={this.props.defaultColor} textColor={this.props.textColor} />) : null}
         </ReactSwipe>
-        <a className={styles.next} onClick={() => this.reactSwipeEl.next()}>Next</a>
-        <a className={styles.prev} onClick={() => this.reactSwipeEl.prev()}>Previous</a>
+        <a className={styles.next} onClick={() => this.reactSwipeEl.next()}>
+          <Icon iconName="DoubleChevronLeftMedMirrored"/>
+        </a>
+        <a className={styles.prev} onClick={() => this.reactSwipeEl.prev()}>
+          <Icon iconName="DoubleChevronLeftMed"/>
+        </a>
       </div>
     );
   }

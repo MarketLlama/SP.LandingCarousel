@@ -1,9 +1,9 @@
 @import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
 
 .landingImageCarousel {
-  .carousel{
-    width: 100%;
+  .carousel > div {
     display: flex;
+    flex-direction: row
   }
 
   .slideImage {
@@ -32,16 +32,16 @@
   .next {
     cursor: pointer;
     position: absolute;
-    top: 50%;
+    top: 95%;
     width: auto;
     padding: 16px;
     margin-top: -50px;
     color: white;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 14px;
     border-radius: 0 3px 3px 0;
     user-select: none;
-    -webkit-user-select: none;
+    animation: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   }
 
   /* Position the "next button" to the right */
@@ -54,6 +54,5 @@
   .prev:hover,
   .next:hover {
     color: $ms-color-themePrimary;
-    animation: cubic-bezier(0.55, 0.085, 0.68, 0.53);
   }
 }

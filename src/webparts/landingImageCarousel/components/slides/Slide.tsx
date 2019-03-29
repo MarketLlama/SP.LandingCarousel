@@ -9,11 +9,14 @@ export class Slide extends React.Component<ISlideProps, {}> {
   public render() {
     const pictureURL = encodeURI(this.props.item.picture);
     const slideStyle: React.CSSProperties = {};
-    slideStyle.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${pictureURL}")`;
+    slideStyle.backgroundImage = `linear-gradient(${this.props.defaultColor}, ${this.props.defaultColor}), url("${pictureURL}")`;
+
+    const textStyle: React.CSSProperties = {};
+    textStyle.color = this.props.textColor;
 
     return (
       <div className={styles.slideImage} style={slideStyle}>
-        <div className={styles.slideText}>
+        <div className={styles.slideText} style={textStyle}>
           <h1>{this.props.item.title}</h1>
           <p>{this.props.item.description}</p>
         </div>

@@ -4,7 +4,8 @@ import { Version } from '@microsoft/sp-core-library';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import {
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
+  PropertyPaneDropdown
 } from '@microsoft/sp-property-pane';
 
 import * as strings from 'LandingImageCarouselWebPartStrings';
@@ -15,17 +16,23 @@ export interface ILandingImageCarouselWebPartProps {
   collectionData: ISlideInfo[];
   tileHeight: number;
   title: string;
+  defaultColor : string;
+  textColor : string;
 }
 
 export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<ILandingImageCarouselWebPartProps> {
   private propertyFieldCollectionData;
   private customCollectionFieldType;
+  private propertyFieldColor;
+  private propertyFieldColorStyle;
 
   public render(): void {
     const element: React.ReactElement<ILandingImageCarouselProps > = React.createElement(
       LandingImageCarousel,
       {
         title: this.properties.title,
+        defaultColor : this.properties.defaultColor,
+        textColor : this.properties.textColor,
         collectionData: this.properties.collectionData,
         displayMode: this.displayMode,
         fUpdateProperty: (value: string) => {
@@ -49,9 +56,9 @@ export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<I
   protected async loadPropertyPaneResources(): Promise<void> {
     // import additional controls/components
 
-    const { PropertyFieldNumber } = await import (
+    const { PropertyFieldColorPicker, PropertyFieldColorPickerStyle } = await import (
       /* webpackChunkName: 'pnp-propcontrols-number' */
-      '@pnp/spfx-property-controls/lib/propertyFields/number'
+      '@pnp/spfx-property-controls/lib/PropertyFieldColorPicker'
     );
     const { PropertyFieldCollectionData, CustomCollectionFieldType } = await import (
       /* webpackChunkName: 'pnp-propcontrols-colldata' */
@@ -60,6 +67,12 @@ export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<I
 
     this.propertyFieldCollectionData = PropertyFieldCollectionData;
     this.customCollectionFieldType = CustomCollectionFieldType;
+    this.propertyFieldColor = PropertyFieldColorPicker;
+    this.propertyFieldColorStyle = PropertyFieldColorPickerStyle;
+  }
+
+  private _setDeafultColor = (color) =>{
+    console.log(color);
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
@@ -121,7 +134,36 @@ export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<I
                       ]
                     }
                   ]
-                })
+                }),
+                this.propertyFieldColor(
+                  'defaultColor', {
+                    label: 'Default Color',
+                    selectedColor: this.properties.defaultColor,
+                    properties: this.properties,
+                    disabled: false,
+                    isHidden: false,
+                    alphaSliderHidden: false,
+                    style: this.propertyFieldColorStyle.Full,
+                    iconName: 'Precipitation',
+                    key: 'colorFieldId',
+                    onPropertyChange: this.onPropertyPaneFieldChanged
+                }),
+                PropertyPaneDropdown('textColor',{
+                  label : 'Text Color',
+                  selectedKey : '#FFF',
+                  options:[{
+                    key: "#FFF",
+                    text: "White"
+                  },
+                  {
+                    key: "#000",
+                    text: "Black"
+                  },
+                  {
+                    key: '#3F3F3F',
+                    text : 'Grey'
+                  }]
+                }),
               ]
             }
           ]
