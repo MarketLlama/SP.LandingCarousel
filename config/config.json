@@ -13,6 +13,7 @@
   },
   "externals": {},
   "localizedResources": {
-    "LandingImageCarouselWebPartStrings": "lib/webparts/landingImageCarousel/loc/{locale}.js"
+    "LandingImageCarouselWebPartStrings": "lib/webparts/landingImageCarousel/loc/{locale}.js",
+    "PropertyControlStrings": "node_modules/@pnp/spfx-property-controls/lib/loc/{locale}.js"
   }
 }
