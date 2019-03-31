@@ -3,9 +3,9 @@
   "solution": {
     "name": "sp-landing-carousel-client-side-solution",
     "id": "2727007a-5d75-4250-858f-b5c12541e2de",
-    "version": "1.0.0.0",
+    "version": "1.0.0.1",
     "includeClientSideAssets": true,
-    "skipFeatureDeployment": false,
+    "skipFeatureDeployment": true,
     "isDomainIsolated": false
   },
   "paths": {
