@@ -16,10 +16,13 @@ export class Slide extends React.Component<ISlideProps, {}> {
 
     return (
       <div className={styles.slideImage} style={slideStyle}>
-        <div className={styles.slideText} style={textStyle}>
-          <h1>{this.props.item.title}</h1>
-          <p>{this.props.item.description}</p>
-        </div>
+        <a href={this.props.item.url? this.props.item.url : null}
+          target={this.props.item.target? this.props.item.target : null}>
+          <div className={styles.slideText} style={textStyle} >
+            <h1>{this.props.item.title}</h1>
+            <p>{this.props.item.description}</p>
+          </div>
+        </a>
       </div>
     );
   }

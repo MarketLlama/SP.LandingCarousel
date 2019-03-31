@@ -12,6 +12,11 @@ import * as strings from 'LandingImageCarouselWebPartStrings';
 import LandingImageCarousel from './components/LandingImageCarousel';
 import {ILandingImageCarouselProps, ISlideInfo, LinkTarget } from './components';
 
+//Slick styles
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
+
 export interface ILandingImageCarouselWebPartProps {
   collectionData: ISlideInfo[];
   tileHeight: number;
@@ -110,13 +115,13 @@ export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<I
                       id: "url",
                       title: strings.urlField,
                       type: this.customCollectionFieldType.string,
-                      required: true
+                      required: false
                     },
                     {
                       id: "picture",
                       title: strings.pictureField,
                       type: this.customCollectionFieldType.url,
-                      required: true
+                      required: false
                     },
                     {
                       id: "target",

@@ -18,8 +18,8 @@
     "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
     "group": { "default": "Other" },
     "title": { "default": "Landing Image Carousel" },
-    "description": { "default": "Landing Image Carousel description" },
-    "officeFabricIconFontName": "Page",
+    "description": { "default": "Landing Image Carousel" },
+    "officeFabricIconFontName": "ClosePane",
     "properties": {
       "description": "Landing Image Carousel"
     }

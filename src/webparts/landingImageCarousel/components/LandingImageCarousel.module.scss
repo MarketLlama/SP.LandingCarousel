@@ -1,10 +1,6 @@
 @import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
 
 .landingImageCarousel {
-  .carousel > div {
-    display: flex;
-    flex-direction: row
-  }
 
   .slideImage {
     /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */

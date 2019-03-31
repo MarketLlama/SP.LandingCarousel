@@ -24,8 +24,8 @@
     "office-ui-fabric-react": "^5.112.0",
     "react": "^16.7.0",
     "react-dom": "16.7.0",
-    "react-swipe": "^6.0.4",
-    "swipe-js-iso": "^2.1.5"
+    "react-slick": "^0.23.2",
+    "slick-carousel": "^1.8.1"
   },
   "resolutions": {
     "@types/react": "16.4.2"
