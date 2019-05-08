@@ -6,7 +6,7 @@
     /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
 
     /* Set a specific height */
-    height: 400px;
+    height:400px;
 
     /* Position and center the image to scale nicely on all screens */
     background-position: center;
@@ -22,6 +22,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400 !important;
   }
 
   .prev,
@@ -50,5 +52,57 @@
   .prev:hover,
   .next:hover {
     color: $ms-color-themePrimary;
+  }
+
+  @media(max-width:767px) {
+    .slideImage {
+      /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+
+      /* Set a specific height */
+      height: 200px;
+
+      /* Position and center the image to scale nicely on all screens */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+    .slideText{
+      h1{
+        font-size: 14px;
+      }
+      p{
+        font-size: 10px;
+      }
+    }
+  }
+
+  @media(max-width:550px) {
+    .slideImage {
+      /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+
+      /* Set a specific height */
+      height: 150px;
+
+      /* Position and center the image to scale nicely on all screens */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
+  }
+  @media(max-width:450px) {
+    .slideImage {
+      /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+
+      /* Set a specific height */
+      height: 120px;
+
+      /* Position and center the image to scale nicely on all screens */
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+    }
   }
 }
