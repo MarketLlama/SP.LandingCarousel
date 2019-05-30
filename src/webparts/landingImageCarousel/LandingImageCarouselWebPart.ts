@@ -10,7 +10,7 @@ import {
 
 import * as strings from 'LandingImageCarouselWebPartStrings';
 import LandingImageCarousel from './components/LandingImageCarousel';
-import {ILandingImageCarouselProps, ISlideInfo, LinkTarget } from './components';
+import {ILandingImageCarouselProps, ISlideInfo, LinkTarget, SlideTypes } from './components';
 
 //Slick styles
 import 'slick-carousel/slick/slick.css';
@@ -76,10 +76,6 @@ export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<I
     this.propertyFieldColorStyle = PropertyFieldColorPickerStyle;
   }
 
-  private _setDeafultColor = (color) =>{
-    console.log(color);
-  }
-
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
 
     return {
@@ -137,6 +133,24 @@ export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<I
                           text: strings.targetNew
                         }
                       ]
+                    },{
+                      id: "slideType",
+                      title: 'Slide Type',
+                      type: this.customCollectionFieldType.dropdown,
+                      options: [
+                        {
+                          key: SlideTypes.MIDDLE_TEXT,
+                          text: 'Middle Text Slide'
+                        },
+                        {
+                          key: SlideTypes.LEFT_PANNEL,
+                          text: 'Left Pannel Slide'
+                        },
+                        {
+                          key: SlideTypes.RIGHT_PANNEL,
+                          text: 'Right Pannel Slide'
+                        }
+                      ]
                     }
                   ]
                 }),
@@ -168,7 +182,7 @@ export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<I
                     key: '#3F3F3F',
                     text : 'Grey'
                   }]
-                }),
+                })
               ]
             }
           ]

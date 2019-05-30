@@ -1,6 +1,44 @@
 @import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
 
+%editMode{
+  // Edit mode
+    textarea {
+    background-color: transparent;
+    border: none;
+    box-sizing: border-box;
+    color: inherit;
+    display: block;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    height: 40px;
+    line-height: inherit;
+    margin: 0;
+    outline: 0;
+    overflow: hidden;
+    resize: none;
+    text-align: inherit;
+    white-space: pre;
+    width: 100%;
+
+    &::placeholder,
+    &::-webkit-input-placeholder {
+      color: "[theme: neutralSecondary, default: #666666]"!important;
+    }
+  }
+}
+
 .landingImageCarousel {
+  .title {
+    @include ms-font-xxl;
+    font-size: 36px;
+    font-weight: 400 !important;
+  }
+
+  .description {
+    @include ms-font-xl;
+    font-weight: 400 !important;
+  }
 
   .slideImage {
     /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
@@ -22,8 +60,27 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 400 !important;
+    @extend %editMode;
+  }
+  .slideTextRight {
+    color: white;
+    position: absolute;
+    right: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+    height: 100%;
+    width: 40%;
+    @extend %editMode;
+  }
+  .slideTextLeft {
+    color: white;
+    position: absolute;
+    left: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 100%;
+    width: 40%;
+    @extend %editMode;
   }
 
   .prev,

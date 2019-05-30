@@ -27,7 +27,11 @@ export default class LandingImageCarousel extends React.Component<ILandingImageC
         >
           {this.props.collectionData?
               this.props.collectionData.map((slide, idx) => <Slide item={slide} key={idx}
-                defaultColor={this.props.defaultColor} textColor={this.props.textColor} />) : null}
+                defaultColor={this.props.defaultColor}
+                textColor={this.props.textColor}
+                displayMode={this.props.displayMode}
+                fUpdateProperty={this._updateProperty}
+              />) : null}
         </Slider>
         <a className={styles.next} onClick={() => this.slider.slickNext()}>
           <Icon iconName="DoubleChevronLeftMedMirrored"/>
@@ -37,5 +41,10 @@ export default class LandingImageCarousel extends React.Component<ILandingImageC
         </a>
       </div>
     );
+  }
+
+  private _updateProperty = (value, prop) =>{
+    console.log(value);
+    console.log(prop);
   }
 }
