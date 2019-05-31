@@ -1,8 +1,8 @@
 export interface ISlideInfo {
+  uniqueId : string;
   title: string;
   description: string;
   url: string;
-  icon: string;
   picture : string;
   target: LinkTarget;
   slideType : SlideTypes;

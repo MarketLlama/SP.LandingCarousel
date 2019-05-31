@@ -5,6 +5,8 @@ export interface ISlideProps {
   item: ISlideInfo;
   defaultColor : string;
   textColor : string;
+  headerUnderline: boolean;
+  descriptionTextColor : string;
   displayMode : DisplayMode;
   fUpdateProperty: Function;
 }

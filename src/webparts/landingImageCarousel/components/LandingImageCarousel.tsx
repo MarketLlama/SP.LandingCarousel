@@ -4,6 +4,7 @@ import styles from './LandingImageCarousel.module.scss';
 import { ILandingImageCarouselProps } from './ILandingImageCarouselProps';
 import { Slide } from './slides';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
+import { ISlideInfo } from './ISlideInfo';
 
 export default class LandingImageCarousel extends React.Component<ILandingImageCarouselProps, {}> {
   private slider : any;
@@ -29,7 +30,9 @@ export default class LandingImageCarousel extends React.Component<ILandingImageC
               this.props.collectionData.map((slide, idx) => <Slide item={slide} key={idx}
                 defaultColor={this.props.defaultColor}
                 textColor={this.props.textColor}
+                descriptionTextColor={this.props.descriptionTextColor}
                 displayMode={this.props.displayMode}
+                headerUnderline={this.props.headerUnderline}
                 fUpdateProperty={this._updateProperty}
               />) : null}
         </Slider>
@@ -43,8 +46,7 @@ export default class LandingImageCarousel extends React.Component<ILandingImageC
     );
   }
 
-  private _updateProperty = (value, prop) =>{
-    console.log(value);
-    console.log(prop);
+  private _updateProperty =  (value : string, item : ISlideInfo, prop : string) =>{
+    this.props.fUpdateCollectionData(value, item , prop);
   }
 }

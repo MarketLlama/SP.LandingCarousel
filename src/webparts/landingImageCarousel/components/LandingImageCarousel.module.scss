@@ -2,7 +2,8 @@
 
 %editMode{
   // Edit mode
-    textarea {
+    textarea,
+    Textarea {
     background-color: transparent;
     border: none;
     box-sizing: border-box;
@@ -28,6 +29,21 @@
   }
 }
 
+%animation {
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  animation-duration: 1.5s;
+  animation-fill-mode: both;
+  animation-name: fadeIn;
+}
+
 .landingImageCarousel {
   .title {
     @include ms-font-xxl;
@@ -44,13 +60,15 @@
     /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
 
     /* Set a specific height */
-    height:400px;
+    height:450px;
 
     /* Position and center the image to scale nicely on all screens */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    @extend %animation;
+
   }
 
   .slideText {
@@ -66,20 +84,24 @@
     color: white;
     position: absolute;
     right: 0px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
     height: 100%;
-    width: 40%;
+    width: 30%;
+    overflow-wrap: break-word;
+    word-break: break-all;
     @extend %editMode;
   }
   .slideTextLeft {
     color: white;
     position: absolute;
     left: 0px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     height: 100%;
-    width: 40%;
+    width: 30%;
+    overflow-wrap: break-word;
+    word-break: break-all;
     @extend %editMode;
   }
 
@@ -124,42 +146,16 @@
       background-size: cover;
       position: relative;
     }
-    .slideText{
-      h1{
-        font-size: 14px;
+    .slideText,
+    .slideTextRight,
+    .slideTextLeft{
+      width: 100%;
+      .title{
+        font-size: 18px;
       }
-      p{
-        font-size: 10px;
+      .description{
+        font-size: 12px;
       }
-    }
-  }
-
-  @media(max-width:550px) {
-    .slideImage {
-      /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-
-      /* Set a specific height */
-      height: 150px;
-
-      /* Position and center the image to scale nicely on all screens */
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      position: relative;
-    }
-  }
-  @media(max-width:450px) {
-    .slideImage {
-      /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-
-      /* Set a specific height */
-      height: 120px;
-
-      /* Position and center the image to scale nicely on all screens */
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      position: relative;
     }
   }
 }

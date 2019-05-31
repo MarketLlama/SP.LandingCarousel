@@ -1,17 +1,16 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
-import { Version } from '@microsoft/sp-core-library';
+import { Version, DisplayMode } from '@microsoft/sp-core-library';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 import {
   IPropertyPaneConfiguration,
-  PropertyPaneTextField,
-  PropertyPaneDropdown
+  PropertyPaneDropdown,
+  PropertyPaneToggle
 } from '@microsoft/sp-property-pane';
 
 import * as strings from 'LandingImageCarouselWebPartStrings';
 import LandingImageCarousel from './components/LandingImageCarousel';
 import {ILandingImageCarouselProps, ISlideInfo, LinkTarget, SlideTypes } from './components';
-
 //Slick styles
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -23,6 +22,8 @@ export interface ILandingImageCarouselWebPartProps {
   title: string;
   defaultColor : string;
   textColor : string;
+  descriptionTextColor : string;
+  headerUnderline : boolean;
 }
 
 export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<ILandingImageCarouselWebPartProps> {
@@ -38,10 +39,19 @@ export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<I
         title: this.properties.title,
         defaultColor : this.properties.defaultColor,
         textColor : this.properties.textColor,
+        descriptionTextColor : this.properties.descriptionTextColor,
+        headerUnderline: this.properties.headerUnderline,
         collectionData: this.properties.collectionData,
         displayMode: this.displayMode,
         fUpdateProperty: (value: string) => {
           this.properties.title = value;
+        },
+        fUpdateCollectionData : (value : string, item : ISlideInfo, prop : string) =>{
+          this.properties.collectionData.forEach((colData, i ) =>{
+            if (colData.uniqueId == item.uniqueId){
+              this.properties.collectionData[i][prop] = value;
+            }
+          });
         },
         fPropertyPaneOpen: this.context.propertyPane.open
       }
@@ -74,6 +84,10 @@ export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<I
     this.customCollectionFieldType = CustomCollectionFieldType;
     this.propertyFieldColor = PropertyFieldColorPicker;
     this.propertyFieldColorStyle = PropertyFieldColorPickerStyle;
+  }
+
+  protected get disableReactivePropertyChanges(): boolean {
+    return false;
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
@@ -136,6 +150,7 @@ export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<I
                     },{
                       id: "slideType",
                       title: 'Slide Type',
+                      selectedKey: SlideTypes.MIDDLE_TEXT,
                       type: this.customCollectionFieldType.dropdown,
                       options: [
                         {
@@ -156,7 +171,7 @@ export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<I
                 }),
                 this.propertyFieldColor(
                   'defaultColor', {
-                    label: 'Default Color',
+                    label: 'Background Color',
                     selectedColor: this.properties.defaultColor,
                     properties: this.properties,
                     disabled: false,
@@ -168,7 +183,7 @@ export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<I
                     onPropertyChange: this.onPropertyPaneFieldChanged
                 }),
                 PropertyPaneDropdown('textColor',{
-                  label : 'Text Color',
+                  label : 'Heading Color',
                   selectedKey : '#FFF',
                   options:[{
                     key: "#FFF",
@@ -181,8 +196,44 @@ export default class LandingImageCarouselWebPart extends BaseClientSideWebPart<I
                   {
                     key: '#3F3F3F',
                     text : 'Grey'
+                  },
+                  {
+                    key: '#5F7800',
+                    text : 'Dark Green'
+                  },
+                  {
+                    key: '#aab400',
+                    text : 'Light Green'
                   }]
-                })
+                }),
+                PropertyPaneDropdown('descriptionTextColor',{
+                  label : 'Heading Color',
+                  selectedKey : '#FFF',
+                  options:[{
+                    key: "#FFF",
+                    text: "White"
+                  },
+                  {
+                    key: "#000",
+                    text: "Black"
+                  },
+                  {
+                    key: '#3F3F3F',
+                    text : 'Grey'
+                  },
+                  {
+                    key: '#5F7800',
+                    text : 'Dark Green'
+                  },
+                  {
+                    key: '#aab400',
+                    text : 'Light Green'
+                  }]
+                }),
+                PropertyPaneToggle("headerUnderline", {
+                  label: 'Underline Header',
+                  checked: false
+                }),
               ]
             }
           ]
