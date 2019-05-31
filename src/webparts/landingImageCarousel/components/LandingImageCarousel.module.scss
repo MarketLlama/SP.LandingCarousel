@@ -147,10 +147,18 @@
       background-size: cover;
       position: relative;
     }
-    .slideText,
+    .slideText{
+      width: 100%;
+      .title{
+        font-size: 18px;
+      }
+      .description{
+        font-size: 12px;
+      }
+    }
     .slideTextRight,
     .slideTextLeft{
-      width: 100%;
+      width: 90%;
       .title{
         font-size: 18px;
       }
