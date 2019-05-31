@@ -54,6 +54,7 @@
   .description {
     @include ms-font-xl;
     font-weight: 400 !important;
+    white-space: pre-line;
   }
 
   .slideImage {
@@ -89,7 +90,7 @@
     height: 100%;
     width: 30%;
     overflow-wrap: break-word;
-    word-break: break-all;
+    word-break: break-word;
     @extend %editMode;
   }
   .slideTextLeft {
@@ -101,7 +102,7 @@
     height: 100%;
     width: 30%;
     overflow-wrap: break-word;
-    word-break: break-all;
+    word-break: break-word;
     @extend %editMode;
   }
 
